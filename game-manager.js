@@ -1,3 +1,4 @@
+import Arena from "./arena.js";
 
 export default class GameManager{
     static start(config){
@@ -10,13 +11,16 @@ export default class GameManager{
         canvas.height=GameManager.config.height;
 
         GameManager.context= canvas.getContext("2d"); //CONTEXTO SERVE PARA DESENHAR  AS FORMAS GEOMÉTRICAS NO GAME
-        GameManager.arena= new Arena;
+        GameManager.arena= new Arena();
+
+        GameManager._draw();
     }
 
     //MÉTODO RESPONSÁVEL  POR DESENHAR O JOGO:
 
     static _draw(){
-        GameManager.arena._draw;
-        requestAnimationFrame(GameManager.arena._draw);
+        GameManager.arena.draw();
+
+        requestAnimationFrame(GameManager._draw);
     }
 }
