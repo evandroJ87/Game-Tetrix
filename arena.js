@@ -1,4 +1,5 @@
 import GameManager from "./game-manager.js";
+import Square from "./square.js";
 
 export default class Arena{
     constructor(){
@@ -10,12 +11,15 @@ export default class Arena{
             top: (GameManager.config.height  - this._height) / 2,
             left: (GameManager.config.width  - this._width) / 2
         }
+        this._squares=[...Array(this._columns)].map(()=>[...Array(this._lines)]);
+
+        this._squares [2][6]= new Square("#000000");
     }
 
     draw(){
     this._drawBorder();
     this._drawGrid();
-    //_drawSquare
+    this._drawSquare();
 }
     //Método responsável por desenhar a borda do Game
     _drawBorder() {
@@ -29,7 +33,7 @@ export default class Arena{
     }
 
     //Métodos responsável por desenhar a grade atrás do Game
-    _drawGrid(){
+    _drawGrid() {
         GameManager.context.strokeStyle="#dedede";
         GameManager.context.beginPath();
         for (let i=1; i < this._lines; i++){
@@ -42,7 +46,16 @@ export default class Arena{
         }
         GameManager.context.stroke();
         }
-        
 
-
+        _drawSquare() {
+            for (let i=0; i < this._columns; i++) {
+                for (let j=0; j<this._lines; j++) {   
+                    if (this._squares[i][j]){
+                    this._squares[i][j].draw(
+                        this.position.left + i * GameManager.config.squareSize,
+                        this.position.top + j * GameManager.config.squareSize)
+                    }
+                }
+            }
+        }
 }
