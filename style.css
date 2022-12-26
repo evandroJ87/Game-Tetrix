@@ -8,3 +8,7 @@ body{
 .canvas-container{
     text-align: center;
 }
+
+canvas{
+    background-color: red;
+}
