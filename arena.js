@@ -1,4 +1,5 @@
 import GameManager from "./game-manager.js";
+import Polyomino from "./polyomino.js";
 import Square from "./square.js";
 
 export default class Arena{
@@ -13,13 +14,23 @@ export default class Arena{
         }
         this._squares=[...Array(this._columns)].map(()=>[...Array(this._lines)]);
 
-        this._squares [2][6]= new Square("#000000");
+        this.currentPiece=new Polyomino(
+            4,
+            "#aedc11",
+            [
+                [0, 0, 0, 0],
+                [0, 1, 1, 0],
+                [1, 1, 0, 0],
+                [0, 0, 0, 0]
+            ]
+        )
     }
 
     draw(){
     this._drawBorder();
     this._drawGrid();
     this._drawSquare();
+    this.currentPiece.draw(3 , 6);
 }
     //Método responsável por desenhar a borda do Game
     _drawBorder() {

@@ -1,7 +1,6 @@
 import GameManager from "./game-manager.js"
 import Square from "./square.js";
 
-
 export default class Polyomino{
     constructor(squaresCount, color, format){
         this.color= color;
@@ -31,5 +30,6 @@ export default class Polyomino{
                 }
             }
         }
+        
     }
 }
