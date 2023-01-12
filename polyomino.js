@@ -1,3 +1,6 @@
+import GameManager from "./game-manager.js"
+import Square from "./square.js";
+
 
 export default class Polyomino{
     constructor(squaresCount, color, format){
@@ -18,6 +21,15 @@ export default class Polyomino{
     }
 
     draw (x, y){
-
+        for (let i=0; i < this._squaresCount; i++) {
+            for (let j=0; j<this._squaresCount; j++) {   
+                if (this._squares[j][i]){
+                    this._squares[j][i].draw(
+                        GameManager.arena.position.left + (x+i) * GameManager.config.squareSize,
+                        GameManager.arena.position.top + (y+j) * GameManager.config.squareSize
+                    );
+                }
+            }
+        }
     }
 }
